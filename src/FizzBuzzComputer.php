@@ -3,6 +3,6 @@
 class FizzBuzzComputer {
 
     public function generate($argument1) {
-        return '1';
+        return "$argument1";
     }
 }
