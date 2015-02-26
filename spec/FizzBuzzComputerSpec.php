@@ -10,4 +10,7 @@ class FizzBuzzComputerSpec extends ObjectBehavior {
 		$this->generate(1)->shouldReturn('1');
 	}
 
+	function it_returns_2_for_2() {
+		$this->generate(2)->shouldReturn('2');
+	}
 }
