@@ -50,6 +50,14 @@ class FizzBuzzComputerSpec extends ObjectBehavior {
 		$this->callGenerate(15, 'fizzbuzz');
 	}
 
+	function it_returns_fizzbuzzwoof_for_12927810() {
+		$this->callGenerate(12927810, 'fizzbuzzwoof');
+	}
+
+	function it_returns_fizz_for_123456789() {
+		$this->callGenerate(123456789, 'fizz');
+	}
+
 	function it_allows_input_set_of_rules() {
 		$this->setRules([
 			3 => 'fizz',
@@ -61,7 +69,43 @@ class FizzBuzzComputerSpec extends ObjectBehavior {
 		$this->callGenerate(15, 'fizzbuzz');
 	}
 
+	function it_allows_rule_function() {
+		$this->setRules([
+			3 => 'fizz',
+			5 => 'buzz',
+		]);
+		$this->setRuleFunction('\spec\FizzBuzzRuleClass::newRuleFunction');
+		$this->callGenerate(3, 'fizzfizzfizz');
+		$this->callGenerate(5, 'buzzbuzzbuzzbuzzbuzz');
+		$this->callGenerate(7, '7');
+		$this->callGenerate(15, 'fizzfizzfizzfizzfizzfizzfizzfizzfizzfizzfizzfizzfizzfizzfizzbuzzbuzzbuzzbuzzbuzzbuzzbuzzbuzzbuzzbuzzbuzzbuzzbuzzbuzzbuzz');
+
+		$this->setRuleFunction('\spec\FizzBuzzRuleClass::newRuleFunction2');
+		$this->callGenerate(3, 'fizz');
+		$this->callGenerate(5, 'buzz');
+		$this->callGenerate(7, '7');
+		$this->callGenerate(15, 'fizzfizzfizzfizzfizzbuzzbuzzbuzz');
+	}
+
 	private function callGenerate($in, $expected) {
 		$this->generate($in)->shouldReturn($expected);
+	}
+}
+
+class FizzBuzzRuleClass {
+	public static function newRuleFunction($argument1, $in, $out) {
+		$output = '';
+		for ($i = 0; $i < $argument1; $i++) {
+			$output .= $out;
+		}
+		return $output;
+	}
+
+	public static function newRuleFunction2($argument1, $in, $out) {
+		$output = '';
+		for ($i = 0; $i < $argument1 / $in; $i++) {
+			$output .= $out;
+		}
+		return $output;
 	}
 }
