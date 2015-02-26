@@ -1,0 +1,2 @@
+# PHPPrimeFactorKata
+Inspired by Laracasts
