@@ -3,15 +3,21 @@
 class FizzBuzzComputer {
 
     public function generate($argument1) {
+		$output = '';
         if ($argument1 % 3 === 0) {
-			return 'fizz';
+			$output .= 'fizz';
 		}
         if ($argument1 % 5 === 0) {
-			return 'buzz';
+			$output .= 'buzz';
 		}
 		if ($argument1 % 7 === 0) {
-			return 'woof';
+			$output .= 'woof';
 		}
-		return "$argument1";
+
+		if ($output) {
+			return $output;
+		} else {
+			return "$argument1";
+		}
     }
 }
