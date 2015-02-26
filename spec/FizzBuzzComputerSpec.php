@@ -30,6 +30,14 @@ class FizzBuzzComputerSpec extends ObjectBehavior {
 		$this->callGenerate(6, 'fizz');
 	}
 
+	function it_returns_woof_for_7() {
+		$this->callGenerate(7, 'woof');
+	}
+
+	function it_returns_fizz_for_9() {
+		$this->callGenerate(9, 'fizz');
+	}
+
 	private function callGenerate($in, $expected) {
 		$this->generate($in)->shouldReturn($expected);
 	}
