@@ -50,6 +50,17 @@ class FizzBuzzComputerSpec extends ObjectBehavior {
 		$this->callGenerate(15, 'fizzbuzz');
 	}
 
+	function it_allows_input_set_of_rules() {
+		$this->setRules([
+			3 => 'fizz',
+			5 => 'buzz',
+		]);
+		$this->callGenerate(3, 'fizz');
+		$this->callGenerate(5, 'buzz');
+		$this->callGenerate(7, '7');
+		$this->callGenerate(15, 'fizzbuzz');
+	}
+
 	private function callGenerate($in, $expected) {
 		$this->generate($in)->shouldReturn($expected);
 	}
