@@ -2,16 +2,22 @@
 
 class FizzBuzzComputer {
 
+	private $rules = [
+		3 => 'fizz',
+		5 => 'buzz',
+		7 => 'woof'
+	];
+
+	public function setRules(Array $rules) {
+		$this->rules = $rules;
+	}
+
     public function generate($argument1) {
 		$output = '';
-        if ($argument1 % 3 === 0) {
-			$output .= 'fizz';
-		}
-        if ($argument1 % 5 === 0) {
-			$output .= 'buzz';
-		}
-		if ($argument1 % 7 === 0) {
-			$output .= 'woof';
+		foreach ($this->rules as $in => $out) {
+			if ($argument1 % $in === 0) {
+				$output .= $out;
+			}
 		}
 
 		if ($output) {
